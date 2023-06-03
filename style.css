@@ -1,95 +1,123 @@
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #000;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2, h3 {
-    text-align: center;
-    color: #fff;
-  }
-  
-  #login-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  #console-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
+  font-family: "Arial", sans-serif;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: #fff;
+}
+
+#login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#console-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200vh;
+}
+
+#dashboard {
+  border: 1px solid #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#current-location, #current-time {
+  text-align: center;
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+body {
+  background-image: radial-gradient(#000, #222);
+}
+
+#console-section {
+  background-color: #333;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+#dashboard {
+  background-color: #222;
+}
+
+#controls {
+  background-color: #333;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+button {
+  background-color: #111;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+button:hover {
+  background-color: #333;
+}
+
+@media screen and (max-width: 768px) {
   #dashboard {
-    border: 1px solid #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #222;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
   }
-  
-  #current-location, #current-time {
-    text-align: center;
-  }
-  
-  #controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
+
   button {
-    margin: 10px;
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #222;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
-  
-  button:hover {
-    background-color: #444;
-  }
-  
-  body {
-    background-image: radial-gradient(#000, #222);
-  }
-  
-  #console-section {
-    background-color: #333;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  
+}
+
+@media screen and (max-width: 480px) { 
   #dashboard {
-    background-color: #222;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
   }
-  
-  #controls {
-    background-color: #333;
-    padding: 20px;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  }
-  
+
   button {
-    background-color: #111;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    margin: 3px;
+    padding: 8px 16px;
+    font-size: 12px;
   }
-  
-  button:hover {
-    background-color: #333;
-  }  
+}

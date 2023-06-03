@@ -3,6 +3,10 @@ const consoleSection = document.getElementById("console-section");
 const currentLocation = document.getElementById("current-location");
 const currentTime = document.getElementById("current-time");
 const logList = document.getElementById("log-list");
+const messageList = document.getElementById("message-list");
+const messageInput = document.getElementById("message-input");
+const sendButton = document.getElementById("send-button");
+const activateEmergencyBtn = document.getElementById("activate-emergency");
 let loggedIn = false;
 let travelLogs = [];
 
@@ -54,6 +58,22 @@ chameleonCircuitBtn.addEventListener("click", function() {
   }
 });
 
+sendButton.addEventListener("click", function() {
+  if (loggedIn) {
+    const message = messageInput.value.trim();
+    if (message !== "") {
+      addMessage(message);
+      messageInput.value = "";
+    }
+  }
+});
+
+activateEmergencyBtn.addEventListener("click", function() {
+  if (loggedIn) {
+    activateEmergencyProtocols();
+  }
+});
+
 function getCurrentTime() {
   const date = new Date();
   return date.toLocaleTimeString();
@@ -79,6 +99,17 @@ function displayLogEntry(entry) {
   const listItem = document.createElement("li");
   listItem.textContent = `Location: ${entry.location}, Time: ${entry.time}`;
   logList.appendChild(listItem);
+}
+
+function addMessage(message) {
+  const listItem = document.createElement("li");
+  listItem.textContent = message;
+  messageList.appendChild(listItem);
+}
+
+function activateEmergencyProtocols() {
+  console.log("Activating Emergency Protocols...");
+  
 }
 
 var scrollButton = document.getElementById("scrollButton");
