@@ -1,14 +1,14 @@
 body {
   font-family: "Arial", sans-serif;
   background-color: #000;
-  color: #fff;
+  color: #0ff;
   margin: 0;
   padding: 0;
 }
 
 h1, h2, h3 {
   text-align: center;
-  color: #fff;
+  color: #0ff;
 }
 
 #login-section {
@@ -28,12 +28,12 @@ h1, h2, h3 {
 }
 
 #dashboard {
-  border: 1px solid #fff;
-  padding: 20px;
+  border: 2px solid #0ff;
+  padding: 30px;
   margin-bottom: 20px;
-  background-color: #222;
+  background-color: #111;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 #current-location,
@@ -48,11 +48,11 @@ h1, h2, h3 {
 }
 
 button {
-  margin: 10px;
-  padding: 15px 30px;
-  font-size: 18px;
-  background-color: #222;
-  color: #fff;
+  margin: 15px;
+  padding: 20px 40px;
+  font-size: 24px;
+  background-color: #111;
+  color: #0ff;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -60,65 +60,85 @@ button {
 }
 
 button:hover {
-  background-color: #444;
-}
-
-body {
-  background-image: radial-gradient(#000, #222);
-}
-
-#console-section {
-  background-color: #333;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-#dashboard {
   background-color: #222;
 }
 
-#controls {
-  background-color: #333;
-  padding: 20px;
-  border: 1px solid #fff;
+body {
+  background-image: linear-gradient(to bottom right, #000 0%, #111 100%);
+}
+
+#console-section {
+  background-color: #222;
+  border: 2px solid #0ff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+#dashboard {
+  background-color: #111;
+}
+
+#controls {
+  background-color: #222;
+  padding: 30px;
+  border: 2px solid #0ff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 button {
-  background-color: #111;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  background-color: #000;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 button:hover {
-  background-color: #333;
+  background-color: #111;
 }
 
 @media screen and (max-width: 768px) {
   #dashboard {
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 14px;
+    padding: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
   }
 
   button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
   }
 }
 
 @media screen and (max-width: 480px) {
   #dashboard {
-    padding: 5px;
-    margin-bottom: 5px;
-    font-size: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
   }
 
   button {
-    margin: 3px;
-    padding: 8px 16px;
-    font-size: 12px;
+    margin: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
   }
+}
+
+input[type="submit"] {
+  background-color: #0ff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #00ccff;
+}
+
+input[type="submit"]:focus {
+  outline: none;
 }

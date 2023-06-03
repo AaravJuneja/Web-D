@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", function (e) {
     loggedIn = true;
     loginForm.style.display = "none";
     consoleSection.style.display = "block";
-    updateDashboard("TARDIS Console", "Unknown", "Unknown");
+    updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
   }
 });
 
@@ -32,7 +32,7 @@ materializeBtn.addEventListener("click", function () {
   if (loggedIn) {
     const location = "Earth";
     const time = getCurrentTime();
-    updateDashboard("TARDIS Console", location, time);
+    updateDashboard("HCET Syndicate TARDIS Console", location, time);
     addLogEntry(location, time);
   }
 });
@@ -41,7 +41,7 @@ dematerializeBtn.addEventListener("click", function () {
   if (loggedIn) {
     const location = "Unknown";
     const time = getCurrentTime();
-    updateDashboard("TARDIS Console", location, time);
+    updateDashboard("HCET Syndicate TARDIS Console", location, time);
     addLogEntry(location, time);
   }
 });
@@ -76,13 +76,13 @@ activateEmergencyBtn.addEventListener("click", function () {
 
 function getCurrentTime() {
   const date = new Date();
-  return date.toLocaleTimeString();
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
 function updateDashboard(consoleName, location, time) {
   document.title = consoleName;
-  currentLocation.textContent = "Location: " + location;
-  currentTime.textContent = "Time: " + time;
+  currentLocation.textContent = "Current Location: " + location;
+  currentTime.textContent = "Current Time: " + time;
 }
 
 function addLogEntry(location, time) {
