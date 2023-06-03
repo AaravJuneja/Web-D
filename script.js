@@ -56,3 +56,10 @@ const loginForm = document.getElementById("login-form");
       currentLocation.textContent = "Location: " + location;
       currentTime.textContent = "Time: " + time;
     }
+
+var scrollButton = document.getElementById("scrollButton");
+
+scrollButton.addEventListener("click", function() {
+  
+  window.scrollTo(0, document.body.scrollHeight);
+});
