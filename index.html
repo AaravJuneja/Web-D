@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TARDIS Console</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login-section">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <div id="console-section">
+    <h1>TARDIS Console</h1>
+    <div id="dashboard">
+      <h3>Current Location and Time:</h3>
+      <p id="current-location">Unknown</p>
+      <p id="current-time">Unknown</p>
+    </div>
+
+    <div id="controls">
+      <h3>Controls</h3>
+      <button id="materialize">Materialize</button>
+      <button id="dematerialize">Dematerialize</button>
+      <button id="time-rotor">Activate Time Rotor</button>
+      <button id="chameleon-circuit">Engage Chameleon Circuit</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
