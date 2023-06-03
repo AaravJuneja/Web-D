@@ -14,13 +14,11 @@
       <input type="password" id="password" name="password" required><br>
       <input type="submit" value="Login">
     </form>
-
-<br>
-
+    <br>
     <button id="scrollButton">Scroll Down</button>
   </div>
 
-  <div id="console-section">
+  <div id="console-section" style="display: none;">
     <h1>TARDIS Console</h1>
     <div id="dashboard">
       <h3>Current Location and Time:</h3>
@@ -35,9 +33,13 @@
       <button id="time-rotor">Activate Time Rotor</button>
       <button id="chameleon-circuit">Engage Chameleon Circuit</button>
     </div>
+
+    <div id="history">
+      <h3>Time Travel Logs and History:</h3>
+      <ul id="log-list"></ul>
+    </div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
