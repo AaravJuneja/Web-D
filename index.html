@@ -52,7 +52,40 @@
       <h3>Emergency Protocols:</h3>
       <button id="activate-emergency">Activate Emergency Protocols</button>
     </div>
-  </div>
+
+    <div id="journal">
+      <h3>Travel Log and Journal:</h3>
+      <textarea id="journal-entry" placeholder="Write your journal entry"></textarea>
+      <button id="submit-journal">Submit</button>
+    </div>
+    <div id="journal-entries">
+      <h3>Journal Entries:</h3>
+      <ul id="journal-list"></ul>
+    </div>
+
+    <div id="resource-management">
+      <h3>Resource Management:</h3>
+      <div>
+        <label for="supplies">Supplies:</label>
+        <span id="supplies-count">0</span>
+        <button id="increase-supplies">+</button>
+        <button id="decrease-supplies">-</button>
+      </div>
+      <div>
+        <label for="equipment">Equipment:</label>
+        <span id="equipment-count">0</span>
+        <button id="increase-equipment">+</button>
+        <button id="decrease-equipment">-</button>
+      </div>
+      <div>
+        <label for="time-energy">Time Energy Reserves:</label>
+        <span id="time-energy-count">0</span>
+        <button id="increase-time-energy">+</button>
+        <button id="decrease-time-energy">-</button>
+      </div>
+    </div>
+    
+  </div> 
 
   <script src="script.js"></script>
 </body>

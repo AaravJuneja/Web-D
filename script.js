@@ -10,11 +10,11 @@ const activateEmergencyBtn = document.getElementById("activate-emergency");
 let loggedIn = false;
 let travelLogs = [];
 
-loginForm.addEventListener("submit", function(e) {
+loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  
+
   if (username && password) {
     loggedIn = true;
     loginForm.style.display = "none";
@@ -28,7 +28,7 @@ const dematerializeBtn = document.getElementById("dematerialize");
 const timeRotorBtn = document.getElementById("time-rotor");
 const chameleonCircuitBtn = document.getElementById("chameleon-circuit");
 
-materializeBtn.addEventListener("click", function() {
+materializeBtn.addEventListener("click", function () {
   if (loggedIn) {
     const location = "Earth";
     const time = getCurrentTime();
@@ -37,7 +37,7 @@ materializeBtn.addEventListener("click", function() {
   }
 });
 
-dematerializeBtn.addEventListener("click", function() {
+dematerializeBtn.addEventListener("click", function () {
   if (loggedIn) {
     const location = "Unknown";
     const time = getCurrentTime();
@@ -46,19 +46,19 @@ dematerializeBtn.addEventListener("click", function() {
   }
 });
 
-timeRotorBtn.addEventListener("click", function() {
+timeRotorBtn.addEventListener("click", function () {
   if (loggedIn) {
     console.log("Activating the Time Rotor...");
   }
 });
 
-chameleonCircuitBtn.addEventListener("click", function() {
+chameleonCircuitBtn.addEventListener("click", function () {
   if (loggedIn) {
     console.log("Engaging the Chameleon Circuit...");
   }
 });
 
-sendButton.addEventListener("click", function() {
+sendButton.addEventListener("click", function () {
   if (loggedIn) {
     const message = messageInput.value.trim();
     if (message !== "") {
@@ -68,7 +68,7 @@ sendButton.addEventListener("click", function() {
   }
 });
 
-activateEmergencyBtn.addEventListener("click", function() {
+activateEmergencyBtn.addEventListener("click", function () {
   if (loggedIn) {
     activateEmergencyProtocols();
   }
@@ -89,7 +89,7 @@ function addLogEntry(location, time) {
   const entry = {
     location: location,
     time: time,
-    events: []
+    events: [],
   };
   travelLogs.push(entry);
   displayLogEntry(entry);
@@ -109,11 +109,95 @@ function addMessage(message) {
 
 function activateEmergencyProtocols() {
   console.log("Activating Emergency Protocols...");
-  
 }
 
 var scrollButton = document.getElementById("scrollButton");
 
-scrollButton.addEventListener("click", function() {
+scrollButton.addEventListener("click", function () {
   window.scrollTo(0, document.body.scrollHeight);
 });
+
+const journalEntryInput = document.getElementById("journal-entry");
+const submitJournalBtn = document.getElementById("submit-journal");
+const journalList = document.getElementById("journal-list");
+
+submitJournalBtn.addEventListener("click", function () {
+  const entryText = journalEntryInput.value.trim();
+  if (entryText !== "") {
+    addJournalEntry(entryText);
+    journalEntryInput.value = "";
+  }
+});
+
+function addJournalEntry(entryText) {
+  const li = document.createElement("li");
+  li.textContent = entryText;
+  journalList.appendChild(li);
+}
+
+let suppliesCount = 0;
+let equipmentCount = 0;
+let timeEnergyCount = 0;
+
+const suppliesCountElement = document.getElementById("supplies-count");
+const equipmentCountElement = document.getElementById("equipment-count");
+const timeEnergyCountElement = document.getElementById("time-energy-count");
+
+const increaseSuppliesBtn = document.getElementById("increase-supplies");
+const decreaseSuppliesBtn = document.getElementById("decrease-supplies");
+const increaseEquipmentBtn = document.getElementById("increase-equipment");
+const decreaseEquipmentBtn = document.getElementById("decrease-equipment");
+const increaseTimeEnergyBtn = document.getElementById("increase-time-energy");
+const decreaseTimeEnergyBtn = document.getElementById("decrease-time-energy");
+
+increaseSuppliesBtn.addEventListener("click", function () {
+  suppliesCount++;
+  updateResourceCount("supplies", suppliesCount);
+});
+
+decreaseSuppliesBtn.addEventListener("click", function () {
+  if (suppliesCount > 0) {
+    suppliesCount--;
+    updateResourceCount("supplies", suppliesCount);
+  }
+});
+
+increaseEquipmentBtn.addEventListener("click", function () {
+  equipmentCount++;
+  updateResourceCount("equipment", equipmentCount);
+});
+
+decreaseEquipmentBtn.addEventListener("click", function () {
+  if (equipmentCount > 0) {
+    equipmentCount--;
+    updateResourceCount("equipment", equipmentCount);
+  }
+});
+
+increaseTimeEnergyBtn.addEventListener("click", function () {
+  timeEnergyCount++;
+  updateResourceCount("time-energy", timeEnergyCount);
+});
+
+decreaseTimeEnergyBtn.addEventListener("click", function () {
+  if (timeEnergyCount > 0) {
+    timeEnergyCount--;
+    updateResourceCount("time-energy", timeEnergyCount);
+  }
+});
+
+function updateResourceCount(resourceType, count) {
+  switch (resourceType) {
+    case "supplies":
+      suppliesCountElement.textContent = count;
+      break;
+    case "equipment":
+      equipmentCountElement.textContent = count;
+      break;
+    case "time-energy":
+      timeEnergyCountElement.textContent = count;
+      break;
+    default:
+      break;
+  }
+}
