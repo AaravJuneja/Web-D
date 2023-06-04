@@ -366,7 +366,7 @@ function activateEmergencyProtocols() {
 
   // Display a surprise message
   const listItem = document.createElement("li");
-  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax Enjoy this surprise: ";
+  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ඞ";
   messageList.appendChild(listItem);
 
   // Create a link to the Rickroll video
