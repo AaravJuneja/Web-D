@@ -14,4 +14,4 @@ Within the console section, there are several elements and features:
 6) Travel Log and Journal: Enables the user to write journal entries and displays a list of previous entries.
 7) Resource Management: Allows the user to manage supplies, equipment, and time energy reserves.
 
-Click <a href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ" target="_blank">HERE</a> for an unexpected musical surprise that will surely leave a smile on your face. Enjoy the catchy tunes and dance your way through time! 
+I apologise if you find the "Emergency Protocol" misleading but it will be fun!
