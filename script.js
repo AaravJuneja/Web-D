@@ -69,7 +69,41 @@ dematerializeBtn.addEventListener("click", function () {
 
 timeRotorBtn.addEventListener("click", function () {
   if (loggedIn) {
-    console.log("Activating the Time Rotor...");
+const timeRotorBtn = document.getElementById("time-rotor") || document.createElement("button");
+
+timeRotorBtn.addEventListener("click", function () {
+  if (loggedIn) {
+    activateTimeRotor();
+  }
+});
+
+function activateTimeRotor() {
+  const timeRotor = document.getElementById("time-rotor");
+
+  const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+  timeRotor.style.backgroundColor = randomColor;
+
+  const animationDuration = Math.floor(Math.random() * 4) + 1;
+  const animationDelay = Math.floor(Math.random() * 2);
+
+  timeRotor.style.animationDuration = `${animationDuration}s`;
+  timeRotor.style.animationDelay = `${animationDelay}s`;
+
+  const animations = ["spin", "bounce", "scale"];
+  const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+
+  timeRotor.classList.add(randomAnimation);
+
+  setTimeout(function () {
+    timeRotor.classList.remove(randomAnimation);
+    timeRotor.style.backgroundColor = "";
+    timeRotor.style.animationDuration = "";
+    timeRotor.style.animationDelay = "";
+  }, (animationDuration + animationDelay) * 1000);
+}
+
   }
 });
 
@@ -159,8 +193,15 @@ travelButton.addEventListener("click", function () {
 // Functions
 function getCurrentTime() {
   const date = new Date();
-  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
 
 function updateDashboard(consoleName, location, time) {
   document.title = consoleName;
