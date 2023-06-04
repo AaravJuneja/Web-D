@@ -1,6 +1,6 @@
 # TARDIS: Embark on your Chad Journey through time
 
-The provided code is an HTML document with embedded CSS styles and JavaScript functionality. It represents a fictional TARDIS console interface. The TARDIS is a time-traveling spacecraft from the popular TV series Doctor Who.
+This is a fictional TARDIS console interface. The TARDIS is a time-traveling spacecraft from the popular TV series Doctor Who.
 
 The HTML structure consists of two main sections: the login section and the console section. Initially, only the login section is visible. Once the user submits a valid username and password, the console section becomes visible.
 
