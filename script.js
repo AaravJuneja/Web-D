@@ -7,6 +7,8 @@ const messageList = document.getElementById("message-list");
 const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const activateEmergencyBtn = document.getElementById("activate-emergency");
+const scrollButton = document.getElementById("scrollButton");
+
 let loggedIn = false;
 let travelLogs = [];
 
@@ -74,45 +76,6 @@ activateEmergencyBtn.addEventListener("click", function () {
   }
 });
 
-function getCurrentTime() {
-  const date = new Date();
-  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-function updateDashboard(consoleName, location, time) {
-  document.title = consoleName;
-  currentLocation.textContent = "Current Location: " + location;
-  currentTime.textContent = "Current Time: " + time;
-}
-
-function addLogEntry(location, time) {
-  const entry = {
-    location: location,
-    time: time,
-    events: [],
-  };
-  travelLogs.push(entry);
-  displayLogEntry(entry);
-}
-
-function displayLogEntry(entry) {
-  const listItem = document.createElement("li");
-  listItem.textContent = `Location: ${entry.location}, Time: ${entry.time}`;
-  logList.appendChild(listItem);
-}
-
-function addMessage(message) {
-  const listItem = document.createElement("li");
-  listItem.textContent = message;
-  messageList.appendChild(listItem);
-}
-
-function activateEmergencyProtocols() {
-  console.log("Activating Emergency Protocols...");
-}
-
-var scrollButton = document.getElementById("scrollButton");
-
 scrollButton.addEventListener("click", function () {
   window.scrollTo(0, document.body.scrollHeight);
 });
@@ -128,12 +91,6 @@ submitJournalBtn.addEventListener("click", function () {
     journalEntryInput.value = "";
   }
 });
-
-function addJournalEntry(entryText) {
-  const li = document.createElement("li");
-  li.textContent = entryText;
-  journalList.appendChild(li);
-}
 
 let suppliesCount = 0;
 let equipmentCount = 0;
@@ -185,6 +142,49 @@ decreaseTimeEnergyBtn.addEventListener("click", function () {
     updateResourceCount("time-energy", timeEnergyCount);
   }
 });
+
+function getCurrentTime() {
+  const date = new Date();
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+function updateDashboard(consoleName, location, time) {
+  document.title = consoleName;
+  currentLocation.textContent = "Current Location: " + location;
+  currentTime.textContent = "Current Time: " + time;
+}
+
+function addLogEntry(location, time) {
+  const entry = {
+    location: location,
+    time: time,
+    events: [],
+  };
+  travelLogs.push(entry);
+  displayLogEntry(entry);
+}
+
+function displayLogEntry(entry) {
+  const listItem = document.createElement("li");
+  listItem.textContent = `Location: ${entry.location}, Time: ${entry.time}`;
+  logList.appendChild(listItem);
+}
+
+function addMessage(message) {
+  const listItem = document.createElement("li");
+  listItem.textContent = message;
+  messageList.appendChild(listItem);
+}
+
+function activateEmergencyProtocols() {
+  console.log("Activating Emergency Protocols...");
+}
+
+function addJournalEntry(entryText) {
+  const li = document.createElement("li");
+  li.textContent = entryText;
+  journalList.appendChild(li);
+}
 
 function updateResourceCount(resourceType, count) {
   switch (resourceType) {
