@@ -27,6 +27,7 @@ const increaseTimeEnergyBtn = document.getElementById("increase-time-energy");
 const decreaseTimeEnergyBtn = document.getElementById("decrease-time-energy");
 const clearLogsBtn = document.getElementById("clear-logs");
 const clearMessagesBtn = document.getElementById("clear-messages");
+const travelButton = document.getElementById("travel-button");
 
 // Variables
 let loggedIn = false;
@@ -152,6 +153,14 @@ clearMessagesBtn.addEventListener("click", function () {
   messageList.innerHTML = "";
 });
 
+travelButton.addEventListener("click", function () {
+  if (loggedIn) {
+    const destinationSelect = document.getElementById("destination-select");
+    const selectedDestination = destinationSelect.value;
+    travelToDestination(selectedDestination);
+  }
+});
+
 // Functions
 function getCurrentTime() {
   const date = new Date();
@@ -210,4 +219,160 @@ function updateResourceCount(resourceType, count) {
     default:
       break;
   }
+}
+
+function travelToDestination(destination) {
+  console.log("Traveling to destination: " + destination);
+  const location = destination;
+  const time = getCurrentTime();
+  updateDashboard("HCET Syndicate TARDIS Console", location, time);
+  addLogEntry(location, time);
+}
+
+// Chameleon Circuit functionality
+let chameleonCircuitEngaged = false;
+
+chameleonCircuitBtn.addEventListener("click", function () {
+  if (loggedIn) {
+    console.log("Engaging the Chameleon Circuit...");
+
+    if (chameleonCircuitEngaged) {
+      resetCircuitStyling();
+      chameleonCircuitEngaged = false;
+    } else {
+      engageCircuitStyling();
+      chameleonCircuitEngaged = true;
+    }
+  }
+});
+
+function engageCircuitStyling() {
+  console.log("Chameleon Circuit engaged! The TARDIS is changing its appearance.");
+
+  const previousBodyStyling = {
+    backgroundColor: document.body.style.backgroundColor,
+    color: document.body.style.color,
+    fontFamily: document.body.style.fontFamily,
+    padding: document.body.style.padding,
+    transition: document.body.style.transition,
+  };
+
+  document.body.style.backgroundColor = "navy";
+  document.body.style.color = "white";
+  document.body.style.fontFamily = "Helvetica, Arial, sans-serif";
+  document.body.style.padding = "20px";
+  document.body.style.transition = "background-color 0.5s ease-in-out";
+
+  const consoleSection = document.getElementById("console-section");
+  consoleSection.style.border = "2px solid white";
+  consoleSection.style.borderRadius = "10px";
+  consoleSection.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  consoleSection.style.padding = "20px";
+  consoleSection.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+
+  const logList = document.getElementById("log-list");
+  logList.style.listStyleType = "none";
+  logList.style.padding = "0";
+
+  const messageList = document.getElementById("message-list");
+  messageList.style.listStyleType = "none";
+  messageList.style.padding = "0";
+
+  const journalList = document.getElementById("journal-list");
+  journalList.style.listStyleType = "none";
+  journalList.style.padding = "0";
+
+  chameleonCircuitBtn.style.backgroundColor = "transparent";
+  chameleonCircuitBtn.style.color = "white";
+  chameleonCircuitBtn.style.border = "2px solid white";
+  chameleonCircuitBtn.style.borderRadius = "5px";
+  chameleonCircuitBtn.style.padding = "10px";
+  chameleonCircuitBtn.style.transition = "background-color 0.5s ease-in-out";
+
+  document.body.classList.add("chameleon-circuit-animation");
+  setTimeout(function () {
+    document.body.classList.remove("chameleon-circuit-animation");
+  }, 2000);
+
+  chameleonCircuitBtn.dataset.previousBodyStyling = JSON.stringify(previousBodyStyling);
+}
+
+function resetCircuitStyling() {
+  console.log("Disengaging the Chameleon Circuit...");
+
+  const previousBodyStyling = JSON.parse(chameleonCircuitBtn.dataset.previousBodyStyling);
+  document.body.style.backgroundColor = previousBodyStyling.backgroundColor;
+  document.body.style.color = previousBodyStyling.color;
+  document.body.style.fontFamily = previousBodyStyling.fontFamily;
+  document.body.style.padding = previousBodyStyling.padding;
+  document.body.style.transition = previousBodyStyling.transition;
+
+  const consoleSection = document.getElementById("console-section");
+  consoleSection.style.border = "";
+  consoleSection.style.borderRadius = "";
+  consoleSection.style.backgroundColor = "";
+  consoleSection.style.padding = "";
+  consoleSection.style.boxShadow = "";
+
+  const logList = document.getElementById("log-list");
+  logList.style.listStyleType = "";
+  logList.style.padding = "";
+
+  const messageList = document.getElementById("message-list");
+  messageList.style.listStyleType = "";
+  messageList.style.padding = "";
+
+  const journalList = document.getElementById("journal-list");
+  journalList.style.listStyleType = "";
+  journalList.style.padding = "";
+
+  chameleonCircuitBtn.style.backgroundColor = "";
+  chameleonCircuitBtn.style.color = "";
+  chameleonCircuitBtn.style.border = "";
+  chameleonCircuitBtn.style.borderRadius = "";
+  chameleonCircuitBtn.style.padding = "";
+  chameleonCircuitBtn.style.transition = "";
+}
+
+var timeRotorButton = document.getElementById('time-rotor');
+
+timeRotorButton.addEventListener('click', function() {
+  var randomColor = generateRandomColor();
+  document.getElementById('time-rotor').style.backgroundColor = randomColor;
+  document.getElementById('time-rotor').classList.add('pulsate-animation');
+  timeRotorButton.disabled = true;
+
+  setTimeout(function() {
+    document.getElementById('time-rotor').classList.remove('pulsate-animation');
+    timeRotorButton.disabled = false;
+  }, 3000);
+});
+
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function activateEmergencyProtocols() {
+  console.log("Initiating Emergency Protocols...");
+
+  // Play the Rickroll audio
+  const audio = new Audio('emergency-relax.mp3');
+  audio.play();
+
+  // Display a surprise message
+  const listItem = document.createElement("li");
+  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Enjoy this surprise: ";
+  messageList.appendChild(listItem);
+
+  // Create a link to the Rickroll video
+  const rickrollLink = document.createElement("a");
+  rickrollLink.textContent = "Relaxing Song";
+  rickrollLink.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+  rickrollLink.target = "_blank";
+  listItem.appendChild(rickrollLink);
 }
