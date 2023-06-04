@@ -29,6 +29,7 @@ const clearMessagesBtn = document.getElementById("clear-messages");
 const travelButton = document.getElementById("travel-button");
 
 // Variables
+let loggedIn = false;
 let travelLogs = [];
 let suppliesCount = 0;
 let equipmentCount = 0;
@@ -41,42 +42,58 @@ loginForm.addEventListener("submit", function (e) {
   const password = document.getElementById("password").value;
 
   if (username && password) {
+    loggedIn = true;
     window.location.href = "console.html";
+    loginForm.style.display = "none";
+    consoleSection.style.display = "block";
+    updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
   }
 });
 
 materializeBtn.addEventListener("click", function () {
-  const location = "Earth";
-  const time = getCurrentTime();
-  updateDashboard("HCET Syndicate TARDIS Console", location, time);
-  addLogEntry(location, time);
+  if (loggedIn) {
+    const location = "Earth";
+    const time = getCurrentTime();
+    updateDashboard("HCET Syndicate TARDIS Console", location, time);
+    addLogEntry(location, time);
+  }
 });
 
 dematerializeBtn.addEventListener("click", function () {
-  const location = "Unknown";
-  const time = getCurrentTime();
-  updateDashboard("HCET Syndicate TARDIS Console", location, time);
-  addLogEntry(location, time);
+  if (loggedIn) {
+    const location = "Unknown";
+    const time = getCurrentTime();
+    updateDashboard("HCET Syndicate TARDIS Console", location, time);
+    addLogEntry(location, time);
+  }
 });
 
 timeRotorBtn.addEventListener("click", function () {
-  console.log("Activating the Time Rotor...");
+  if (loggedIn) {
+    console.log("Activating the Time Rotor...");
+  }
 });
 
 chameleonCircuitBtn.addEventListener("click", function () {
-  console.log("Engaging the Chameleon Circuit...");
+  if (loggedIn) {
+    console.log("Engaging the Chameleon Circuit...");
+  }
 });
 
 sendButton.addEventListener("click", function () {
-  const message = messageInput.value.trim();
-  if (message !== "") {
-    addMessage(message);
-    messageInput.value = "";
+  if (loggedIn) {
+    const message = messageInput.value.trim();
+    if (message !== "") {
+      addMessage(message);
+      messageInput.value = "";
+    }
   }
 });
 
 activateEmergencyBtn.addEventListener("click", function () {
-  activateEmergencyProtocols();
+  if (loggedIn) {
+    activateEmergencyProtocols();
+  }
 });
 
 submitJournalBtn.addEventListener("click", function () {
@@ -124,41 +141,47 @@ decreaseTimeEnergyBtn.addEventListener("click", function () {
 });
 
 clearLogsBtn.addEventListener("click", function () {
-  clearLogs();
+  logList.innerHTML = "";
+  travelLogs = [];
 });
 
 clearMessagesBtn.addEventListener("click", function () {
-  clearMessages();
+  messageList.innerHTML = "";
 });
 
 travelButton.addEventListener("click", function () {
-  travelToDestination();
+  if (loggedIn) {
+    const destinationSelect = document.getElementById("destination-select");
+    const selectedDestination = destinationSelect.value;
+    travelToDestination(selectedDestination);
+  }
 });
 
 // Functions
 function getCurrentTime() {
-  const now = new Date();
-  const time = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
-  return time;
+  const date = new Date();
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
 function updateDashboard(consoleName, location, time) {
-  currentLocation.textContent = `Current Location: ${location}`;
-  currentTime.textContent = `Current Time: ${time}`;
+  document.title = consoleName;
+  currentLocation.textContent = "Current Location: " + location;
+  currentTime.textContent = "Current Time: " + time;
 }
 
 function addLogEntry(location, time) {
-  const logEntry = {
+  const entry = {
     location: location,
-    time: time
+    time: time,
+    events: [],
   };
-  travelLogs.push(logEntry);
-  displayLogEntry(logEntry);
+  travelLogs.push(entry);
+  displayLogEntry(entry);
 }
 
-function displayLogEntry(logEntry) {
+function displayLogEntry(entry) {
   const listItem = document.createElement("li");
-  listItem.textContent = `Location: ${logEntry.location} | Time: ${logEntry.time}`;
+  listItem.textContent = `Location: ${entry.location}, Time: ${entry.time}`;
   logList.appendChild(listItem);
 }
 
@@ -173,46 +196,179 @@ function activateEmergencyProtocols() {
 }
 
 function addJournalEntry(entryText) {
-  const listItem = document.createElement("li");
-  listItem.textContent = entryText;
-  journalList.appendChild(listItem);
+  const li = document.createElement("li");
+  li.textContent = entryText;
+  journalList.appendChild(li);
 }
 
 function updateResourceCount(resourceType, count) {
-  if (resourceType === "supplies") {
-    suppliesCountElement.textContent = `Supplies: ${count}`;
-  } else if (resourceType === "equipment") {
-    equipmentCountElement.textContent = `Equipment: ${count}`;
-  } else if (resourceType === "time-energy") {
-    timeEnergyCountElement.textContent = `Time Energy: ${count}`;
+  switch (resourceType) {
+    case "supplies":
+      suppliesCountElement.textContent = count;
+      break;
+    case "equipment":
+      equipmentCountElement.textContent = count;
+      break;
+    case "time-energy":
+      timeEnergyCountElement.textContent = count;
+      break;
+    default:
+      break;
   }
 }
 
-function clearLogs() {
-  logList.innerHTML = "";
-  travelLogs = [];
+function travelToDestination(destination) {
+  console.log("Traveling to destination: " + destination);
+  const location = destination;
+  const time = getCurrentTime();
+  updateDashboard("HCET Syndicate TARDIS Console", location, time);
+  addLogEntry(location, time);
 }
 
-function clearMessages() {
-  messageList.innerHTML = "";
+// Chameleon Circuit functionality
+let chameleonCircuitEngaged = false;
+
+chameleonCircuitBtn.addEventListener("click", function () {
+  if (loggedIn) {
+    console.log("Engaging the Chameleon Circuit...");
+
+    if (chameleonCircuitEngaged) {
+      resetCircuitStyling();
+      chameleonCircuitEngaged = false;
+    } else {
+      engageCircuitStyling();
+      chameleonCircuitEngaged = true;
+    }
+  }
+});
+
+function engageCircuitStyling() {
+  console.log("Chameleon Circuit engaged! The TARDIS is changing its appearance.");
+
+  const previousBodyStyling = {
+    backgroundColor: document.body.style.backgroundColor,
+    color: document.body.style.color,
+    fontFamily: document.body.style.fontFamily,
+    padding: document.body.style.padding,
+    transition: document.body.style.transition,
+  };
+
+  document.body.style.backgroundColor = "navy";
+  document.body.style.color = "white";
+  document.body.style.fontFamily = "Helvetica, Arial, sans-serif";
+  document.body.style.padding = "20px";
+  document.body.style.transition = "background-color 0.5s ease-in-out";
+
+  const consoleSection = document.getElementById("console-section");
+  consoleSection.style.border = "2px solid white";
+  consoleSection.style.borderRadius = "10px";
+  consoleSection.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  consoleSection.style.padding = "20px";
+  consoleSection.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+
+  const logList = document.getElementById("log-list");
+  logList.style.listStyleType = "none";
+  logList.style.padding = "0";
+
+  const messageList = document.getElementById("message-list");
+  messageList.style.listStyleType = "none";
+  messageList.style.padding = "0";
+
+  const journalList = document.getElementById("journal-list");
+  journalList.style.listStyleType = "none";
+  journalList.style.padding = "0";
+
+  chameleonCircuitBtn.style.backgroundColor = "transparent";
+  chameleonCircuitBtn.style.color = "white";
+  chameleonCircuitBtn.style.border = "2px solid white";
+  chameleonCircuitBtn.style.borderRadius = "5px";
+  chameleonCircuitBtn.style.padding = "10px";
+  chameleonCircuitBtn.style.transition = "background-color 0.5s ease-in-out";
+
+  document.body.classList.add("chameleon-circuit-animation");
+  setTimeout(function () {
+    document.body.classList.remove("chameleon-circuit-animation");
+  }, 2000);
+
+  chameleonCircuitBtn.dataset.previousBodyStyling = JSON.stringify(previousBodyStyling);
 }
 
-function travelToDestination() {
-  console.log("Traveling to the destination...");
+function resetCircuitStyling() {
+  console.log("Disengaging the Chameleon Circuit...");
+
+  const previousBodyStyling = JSON.parse(chameleonCircuitBtn.dataset.previousBodyStyling);
+  document.body.style.backgroundColor = previousBodyStyling.backgroundColor;
+  document.body.style.color = previousBodyStyling.color;
+  document.body.style.fontFamily = previousBodyStyling.fontFamily;
+  document.body.style.padding = previousBodyStyling.padding;
+  document.body.style.transition = previousBodyStyling.transition;
+
+  const consoleSection = document.getElementById("console-section");
+  consoleSection.style.border = "";
+  consoleSection.style.borderRadius = "";
+  consoleSection.style.backgroundColor = "";
+  consoleSection.style.padding = "";
+  consoleSection.style.boxShadow = "";
+
+  const logList = document.getElementById("log-list");
+  logList.style.listStyleType = "";
+  logList.style.padding = "";
+
+  const messageList = document.getElementById("message-list");
+  messageList.style.listStyleType = "";
+  messageList.style.padding = "";
+
+  const journalList = document.getElementById("journal-list");
+  journalList.style.listStyleType = "";
+  journalList.style.padding = "";
+
+  chameleonCircuitBtn.style.backgroundColor = "";
+  chameleonCircuitBtn.style.color = "";
+  chameleonCircuitBtn.style.border = "";
+  chameleonCircuitBtn.style.borderRadius = "";
+  chameleonCircuitBtn.style.padding = "";
+  chameleonCircuitBtn.style.transition = "";
 }
 
-// Random color generation
+var timeRotorButton = document.getElementById('time-rotor');
+
+timeRotorButton.addEventListener('click', function() {
+  var randomColor = generateRandomColor();
+  document.getElementById('time-rotor').style.backgroundColor = randomColor;
+  document.getElementById('time-rotor').classList.add('pulsate-animation');
+  timeRotorButton.disabled = true;
+
+  setTimeout(function() {
+    document.getElementById('time-rotor').classList.remove('pulsate-animation');
+    timeRotorButton.disabled = false;
+  }, 3000);
+});
+
 function generateRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
 
-timeRotorBtn.addEventListener("click", function () {
-  const randomColor = generateRandomColor();
-  timeRotorBtn.style.backgroundColor = randomColor;
-  timeRotorBtn.classList.add("pulsating-animation");
-});
+function activateEmergencyProtocols() {
+  console.log("Initiating Emergency Protocols...");
+
+  // Play the Rickroll audio
+  const audio = new Audio('emergency-relax.mp3');
+  audio.play();
+
+  // Display a surprise message
+  const listItem = document.createElement("li");
+  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ";
+  messageList.appendChild(listItem);
+
+  // Create a link to the Rickroll video
+  const rickrollLink = document.createElement("a");
+  rickrollLink.textContent = "Relaxing Song ඞඞඞ";
+  rickrollLink.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+  rickrollLink.target = "_blank";
+  listItem.appendChild(rickrollLink);
+}
