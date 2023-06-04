@@ -54,16 +54,17 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 button {
   margin: 15px;
-  padding: 20px 40px;
-  font-size: 24px;
+  padding: 10px 20px;
+  font-size: 18px;
   background-color: var(--background-color);
   color: var(--primary-color);
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 0 10px var(--box-shadow-color);
@@ -161,7 +162,6 @@ h3 {
 }
 
 /* Responsive Design */
-
 @media (max-width: 768px) {
   .console {
     min-height: 100vh;
