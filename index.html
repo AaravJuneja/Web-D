@@ -9,16 +9,16 @@
       <h2>Login</h2>
       <form id="login-form">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+        <input type="text" id="username" style="background-color: #222;" name="username" required><br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="password" style="background-color: #222;" name="password" required><br>
         <input type="submit" value="Login">
       </form>
       <br>
       <button id="scrollButton">Scroll Down</button>
     </div>
 
-    <div id="console-section" style="display: none;">
+    <div id="console-section" style="display: flex;">
       <h1>TARDIS Console</h1>
 
       <div id="dashboard">
@@ -27,6 +27,8 @@
         <p id="current-time">Unknown</p>
               </div>
 
+      <br><br>
+
       <div id="controls">
         <h3>Controls</h3>
         <button id="materialize">Materialize</button>
@@ -34,6 +36,8 @@
         <button id="time-rotor">Activate Time Rotor</button>
         <button id="chameleon-circuit">Engage/Disengage Chameleon Circuit</button>
       </div>
+
+      <br><br>
 
       <div id="destination">
         <h3>Destination:</h3>
@@ -45,11 +49,15 @@
         <button id="travel-button">Travel</button>
       </div>      
 
+      <br><br>
+
       <div id="history">
         <h3>Time Travel Logs and History:</h3>
         <ul id="log-list"></ul>
         <button id="clear-logs">Clear Logs</button>
       </div>
+
+      <br><br>
 
       <div id="communication">
         <h3>Communication Interface:</h3>
@@ -61,10 +69,14 @@
         <button id="clear-messages">Clear Messages</button>
       </div>
 
+      <br><br>
+
       <div id="emergency">
         <h3>Emergency Protocols:</h3>
         <button id="activate-emergency">Activate Emergency Protocols</button>
       </div>
+
+      <br><br>
 
       <div id="journal">
         <h3>Travel Log and Journal:</h3>
@@ -72,10 +84,14 @@
         <button id="submit-journal">Submit</button>
       </div>
 
+      <br><br>
+
       <div id="journal-entries">
         <h3>Journal Entries:</h3>
         <ul id="journal-list"></ul>
       </div>
+
+      <br><br>
 
       <div id="resource-management">
         <h3>Resource Management:</h3>
@@ -85,12 +101,18 @@
           <button id="increase-supplies">+</button>
           <button id="decrease-supplies">-</button>
         </div>
+
+    <br><br>
+
         <div>
           <label for="equipment">Equipment:</label>
           <span id="equipment-count">0</span>
           <button id="increase-equipment">+</button>
           <button id="decrease-equipment">-</button>
         </div>
+
+    <br><br>
+
         <div>
           <label for="time-energy">Time Energy Reserves:</label>
           <span id="time-energy-count">0</span>

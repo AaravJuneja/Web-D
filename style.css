@@ -18,21 +18,26 @@ body {
   padding: 0;
 }
 
-.container {
+#login-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: var(--background-color);
-}
+  background-color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--box-shadow-color);
+  padding: 20px;
+  margin-bottom: 20px;
+  }
 
-.console {
+#console-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200vh;
+  min-height: 250vh;
   background-color: var(--secondary-color);
   border: 2px solid var(--primary-color);
   border-radius: 10px;
@@ -41,21 +46,6 @@ body {
   margin: 20px;
 }
 
-.section {
-  background-color: var(--secondary-color);
-  border: 2px solid var(--primary-color);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 20px var(--box-shadow-color);
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
 
 button {
   margin: 15px;
@@ -111,12 +101,12 @@ textarea {
   box-shadow: 0 0 10px var(--box-shadow-color);
 }
 
-.timeLogs li {
+#journal-entries ul {
   color: var(--primary-color);
   margin: 5px 0;
 }
 
-.emergency button {
+#activate-emergency {
   background-color: var(--emergency-color);
   color: var(--background-color);
   padding: 10px 20px;
@@ -134,60 +124,4 @@ h2,
 h3 {
   text-align: center;
   color: var(--primary-color);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .console {
-    min-height: 100vh;
-  }
-
-  .emergency button {
-    padding: 8px 16px;
-    font-size: 16px;
-  }
-
-  button {
-    margin: 10px;
-    padding: 16px 32px;
-    font-size: 20px;
-  }
-}
-
-/* Additional styling for specific sections */
-textarea {
-  resize: vertical;
-}
-
-#scrollButton {
-  margin-top: 20px;
-}
-
-#login-section,
-#console-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-/* Styling for specific elements within sections */
-.timeLogs li {
-  margin: 5px 0;
-}
-
-/* Styling for hover effect */
-button:hover,
-#scrollButton:hover,
-.emergency button:hover {
-  background-color: var(--hover-color);
-}
-
-input[type="submit"]:hover {
-  background-color: #00ccff;
-}
-
-.emergency button:hover {
-  background-color: #cc0000;
 }
