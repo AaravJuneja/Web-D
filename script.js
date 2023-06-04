@@ -43,7 +43,6 @@ loginForm.addEventListener("submit", function (e) {
 
   if (username && password) {
     loggedIn = true;
-    window.location.href = "console.html";
     loginForm.style.display = "none";
     consoleSection.style.display = "block";
     updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
