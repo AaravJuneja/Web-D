@@ -2,7 +2,7 @@
 
 This is a fictional TARDIS console interface. The TARDIS is a time-traveling spacecraft from the popular TV series Doctor Who.
 
-The website consists of two main sections: the login section and the console section. Initially, only the login section is visible. Once the user submits a valid username and password, the console section becomes visible.
+The website consists of two main sections: the login section and the console section. Initially, only the login section is visible. Once the user submits a valid username and password, the console section becomes visible. Some features have not been completed check console after clicking any non-working button after logging in.
 
 Within the console section, there are several elements and features:
 
