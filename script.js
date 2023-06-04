@@ -8,7 +8,6 @@ const messageList = document.getElementById("message-list");
 const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const activateEmergencyBtn = document.getElementById("activate-emergency");
-const scrollButton = document.getElementById("scrollButton");
 const journalEntryInput = document.getElementById("journal-entry");
 const submitJournalBtn = document.getElementById("submit-journal");
 const journalList = document.getElementById("journal-list");
@@ -44,6 +43,7 @@ loginForm.addEventListener("submit", function (e) {
 
   if (username && password) {
     loggedIn = true;
+    window.location.href = "console.html";
     loginForm.style.display = "none";
     consoleSection.style.display = "block";
     updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
@@ -94,10 +94,6 @@ activateEmergencyBtn.addEventListener("click", function () {
   if (loggedIn) {
     activateEmergencyProtocols();
   }
-});
-
-scrollButton.addEventListener("click", function () {
-  window.scrollTo(0, document.body.scrollHeight);
 });
 
 submitJournalBtn.addEventListener("click", function () {
