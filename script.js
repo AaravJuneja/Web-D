@@ -366,12 +366,12 @@ function activateEmergencyProtocols() {
 
   // Display a surprise message
   const listItem = document.createElement("li");
-  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ඞ";
+  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ";
   messageList.appendChild(listItem);
 
   // Create a link to the Rickroll video
   const rickrollLink = document.createElement("a");
-  rickrollLink.textContent = "Relaxing Song";
+  rickrollLink.textContent = "Relaxing Song ඞඞඞ";
   rickrollLink.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
   rickrollLink.target = "_blank";
   listItem.appendChild(rickrollLink);
