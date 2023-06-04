@@ -45,7 +45,7 @@ loginForm.addEventListener("submit", function (e) {
     loggedIn = true;
     window.location.href = "console.html";
     loginForm.style.display = "flex";
-    consoleSection.style.display = "block";
+    consoleSection.style.display = "flex";
     updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
   }
 });
