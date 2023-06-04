@@ -17,6 +17,112 @@
       </form>
       <br>
     </div>
+
+    <!-- Console Section -->
+    <div id="console-section" style="display: none;">
+      <h1>TARDIS Console</h1>
+
+      <div id="dashboard">
+        <h3>Current Location and Time:</h3>
+        <p id="current-location">Unknown</p>
+        <p id="current-time">Unknown</p>
+      </div>
+
+      <br><br>
+
+      <div id="controls">
+        <h3>Controls</h3>
+        <button id="materialize">Materialize</button>
+        <button id="dematerialize">Dematerialize</button>
+        <button id="time-rotor">Activate Time Rotor</button>
+        <button id="chameleon-circuit">Engage/Disengage Chameleon Circuit</button>
+      </div>
+
+      <br><br>
+
+      <div id="destination">
+        <h3>Destination:</h3>
+        <select id="destination-select">
+          <option value="earth">Earth</option>
+          <option value="gallifrey">Gallifrey</option>
+          <option value="skaro">Skaro</option>
+        </select>
+        <button id="travel-button">Travel</button>
+      </div>      
+
+      <br><br>
+
+      <div id="history">
+        <h3>Time Travel Logs and History:</h3>
+        <ul id="log-list"></ul>
+        <button id="clear-logs">Clear Logs</button>
+      </div>
+
+      <br><br>
+
+      <div id="communication">
+        <h3>Communication Interface:</h3>
+        <div id="message-box">
+          <textarea id="message-input" placeholder="Write a message"></textarea>
+          <button id="send-button">Send</button>
+        </div>
+        <ul id="message-list"></ul>
+        <button id="clear-messages">Clear Messages</button>
+      </div>
+
+      <br><br>
+
+      <div id="emergency">
+        <h3>Emergency Protocols:</h3>
+        <button id="activate-emergency">Activate Emergency Protocols</button>
+      </div>
+
+      <br><br>
+
+      <div id="journal">
+        <h3>Travel Log and Journal:</h3>
+        <textarea id="journal-entry" placeholder="Write your journal entry"></textarea>
+        <button id="submit-journal">Submit</button>
+      </div>
+
+      <br><br>
+
+      <div id="journal-entries">
+        <h3>Journal Entries:</h3>
+        <ul id="journal-list"></ul>
+      </div>
+
+      <br><br>
+
+      <div id="resource-management">
+        <h3>Resource Management:</h3>
+        <div>
+          <label for="supplies">Supplies:</label>
+          <span id="supplies-count">0</span>
+          <button id="increase-supplies">+</button>
+          <button id="decrease-supplies">-</button>
+        </div>
+
+        <br><br>
+
+        <div>
+          <label for="equipment">Equipment:</label>
+          <span id="equipment-count">0</span>
+          <button id="increase-equipment">+</button>
+          <button id="decrease-equipment">-</button>
+        </div>
+
+        <br><br>
+
+        <div>
+          <label for="time-energy">Time Energy Reserves:</label>
+          <span id="time-energy-count">0</span>
+          <button id="increase-time-energy">+</button>
+          <button id="decrease-time-energy">-</button>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
