@@ -70,10 +70,6 @@ button {
   box-shadow: 0 0 10px var(--box-shadow-color);
 }
 
-button:hover {
-  background-color: var(--hover-color);
-}
-
 input[type="text"],
 input[type="password"],
 textarea {
@@ -98,10 +94,6 @@ input[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-  background-color: #00ccff;
-}
-
 textarea {
   resize: vertical;
 }
@@ -117,10 +109,6 @@ textarea {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 0 10px var(--box-shadow-color);
-}
-
-#scrollButton:hover {
-  background-color: var(--hover-color);
 }
 
 .timeLogs li {
@@ -139,19 +127,6 @@ textarea {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-}
-
-.emergency button:hover {
-  background-color: #cc0000;
-}
-
-#login-section,
-#console-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
 }
 
 h1,
@@ -177,4 +152,42 @@ h3 {
     padding: 16px 32px;
     font-size: 20px;
   }
+}
+
+/* Additional styling for specific sections */
+textarea {
+  resize: vertical;
+}
+
+#scrollButton {
+  margin-top: 20px;
+}
+
+#login-section,
+#console-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Styling for specific elements within sections */
+.timeLogs li {
+  margin: 5px 0;
+}
+
+/* Styling for hover effect */
+button:hover,
+#scrollButton:hover,
+.emergency button:hover {
+  background-color: var(--hover-color);
+}
+
+input[type="submit"]:hover {
+  background-color: #00ccff;
+}
+
+.emergency button:hover {
+  background-color: #cc0000;
 }

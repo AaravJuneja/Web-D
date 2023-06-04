@@ -1,3 +1,4 @@
+// DOM elements
 const loginForm = document.getElementById("login-form");
 const consoleSection = document.getElementById("console-section");
 const currentLocation = document.getElementById("current-location");
@@ -8,10 +9,33 @@ const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const activateEmergencyBtn = document.getElementById("activate-emergency");
 const scrollButton = document.getElementById("scrollButton");
+const journalEntryInput = document.getElementById("journal-entry");
+const submitJournalBtn = document.getElementById("submit-journal");
+const journalList = document.getElementById("journal-list");
+const suppliesCountElement = document.getElementById("supplies-count");
+const equipmentCountElement = document.getElementById("equipment-count");
+const timeEnergyCountElement = document.getElementById("time-energy-count");
+const materializeBtn = document.getElementById("materialize");
+const dematerializeBtn = document.getElementById("dematerialize");
+const timeRotorBtn = document.getElementById("time-rotor");
+const chameleonCircuitBtn = document.getElementById("chameleon-circuit");
+const increaseSuppliesBtn = document.getElementById("increase-supplies");
+const decreaseSuppliesBtn = document.getElementById("decrease-supplies");
+const increaseEquipmentBtn = document.getElementById("increase-equipment");
+const decreaseEquipmentBtn = document.getElementById("decrease-equipment");
+const increaseTimeEnergyBtn = document.getElementById("increase-time-energy");
+const decreaseTimeEnergyBtn = document.getElementById("decrease-time-energy");
+const clearLogsBtn = document.getElementById("clear-logs");
+const clearMessagesBtn = document.getElementById("clear-messages");
 
+// Variables
 let loggedIn = false;
 let travelLogs = [];
+let suppliesCount = 0;
+let equipmentCount = 0;
+let timeEnergyCount = 0;
 
+// Event Listeners
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
@@ -24,11 +48,6 @@ loginForm.addEventListener("submit", function (e) {
     updateDashboard("HCET Syndicate TARDIS Console", "Unknown", "Unknown");
   }
 });
-
-const materializeBtn = document.getElementById("materialize");
-const dematerializeBtn = document.getElementById("dematerialize");
-const timeRotorBtn = document.getElementById("time-rotor");
-const chameleonCircuitBtn = document.getElementById("chameleon-circuit");
 
 materializeBtn.addEventListener("click", function () {
   if (loggedIn) {
@@ -80,10 +99,6 @@ scrollButton.addEventListener("click", function () {
   window.scrollTo(0, document.body.scrollHeight);
 });
 
-const journalEntryInput = document.getElementById("journal-entry");
-const submitJournalBtn = document.getElementById("submit-journal");
-const journalList = document.getElementById("journal-list");
-
 submitJournalBtn.addEventListener("click", function () {
   const entryText = journalEntryInput.value.trim();
   if (entryText !== "") {
@@ -91,21 +106,6 @@ submitJournalBtn.addEventListener("click", function () {
     journalEntryInput.value = "";
   }
 });
-
-let suppliesCount = 0;
-let equipmentCount = 0;
-let timeEnergyCount = 0;
-
-const suppliesCountElement = document.getElementById("supplies-count");
-const equipmentCountElement = document.getElementById("equipment-count");
-const timeEnergyCountElement = document.getElementById("time-energy-count");
-
-const increaseSuppliesBtn = document.getElementById("increase-supplies");
-const decreaseSuppliesBtn = document.getElementById("decrease-supplies");
-const increaseEquipmentBtn = document.getElementById("increase-equipment");
-const decreaseEquipmentBtn = document.getElementById("decrease-equipment");
-const increaseTimeEnergyBtn = document.getElementById("increase-time-energy");
-const decreaseTimeEnergyBtn = document.getElementById("decrease-time-energy");
 
 increaseSuppliesBtn.addEventListener("click", function () {
   suppliesCount++;
@@ -143,6 +143,16 @@ decreaseTimeEnergyBtn.addEventListener("click", function () {
   }
 });
 
+clearLogsBtn.addEventListener("click", function () {
+  logList.innerHTML = "";
+  travelLogs = [];
+});
+
+clearMessagesBtn.addEventListener("click", function () {
+  messageList.innerHTML = "";
+});
+
+// Functions
 function getCurrentTime() {
   const date = new Date();
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -201,17 +211,3 @@ function updateResourceCount(resourceType, count) {
       break;
   }
 }
-
-// Additional Features
-
-const clearLogsBtn = document.getElementById("clear-logs");
-const clearMessagesBtn = document.getElementById("clear-messages");
-
-clearLogsBtn.addEventListener("click", function () {
-  logList.innerHTML = "";
-  travelLogs = [];
-});
-
-clearMessagesBtn.addEventListener("click", function () {
-  messageList.innerHTML = "";
-});
