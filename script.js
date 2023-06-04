@@ -201,3 +201,17 @@ function updateResourceCount(resourceType, count) {
       break;
   }
 }
+
+// Additional Features
+
+const clearLogsBtn = document.getElementById("clear-logs");
+const clearMessagesBtn = document.getElementById("clear-messages");
+
+clearLogsBtn.addEventListener("click", function () {
+  logList.innerHTML = "";
+  travelLogs = [];
+});
+
+clearMessagesBtn.addEventListener("click", function () {
+  messageList.innerHTML = "";
+});
