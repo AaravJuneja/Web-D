@@ -221,9 +221,12 @@ textarea {
   margin: 0;
 }
 
-.resource input[type="number"] {
-  -moz-appearance: textfield;
+input[type="number"] {
+  --appearance: textfield;
+  appearance: var(--appearance);
+  -moz-appearance: var(--appearance);
 }
+
 
 .resource button {
   background-color: #0ff;
