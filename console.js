@@ -33,6 +33,7 @@ let suppliesCount = 0;
 let equipmentCount = 0;
 let timeEnergyCount = 0;
 let chameleonCircuitEngaged = false;
+let loggedIn = true;
 
 // Event Listeners
 materializeBtn.addEventListener("click", function () {
