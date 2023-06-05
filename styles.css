@@ -32,6 +32,11 @@ body {
   margin-bottom: 20px;
   }
 
+#username,
+#password {
+  background-color: #222;
+}
+
 #dashboard {
   display: flex;
   justify-content: center;
