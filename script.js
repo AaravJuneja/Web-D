@@ -29,11 +29,11 @@ const clearMessagesBtn = document.getElementById("clear-messages");
 const travelButton = document.getElementById("travel-button");
 
 // Variables
-let loggedIn = false;
 let travelLogs = [];
 let suppliesCount = 0;
 let equipmentCount = 0;
 let timeEnergyCount = 0;
+let chameleonCircuitEngaged = false;
 
 // Event Listeners
 loginForm.addEventListener("submit", function (e) {
@@ -50,83 +50,31 @@ loginForm.addEventListener("submit", function (e) {
 });
 
 materializeBtn.addEventListener("click", function () {
-  if (loggedIn) {
-    const location = "Earth";
-    const time = getCurrentTime();
-    updateDashboard("HCET Syndicate TARDIS Console", location, time);
-    addLogEntry(location, time);
-  }
+  handleMaterializeDematerialize("Earth");
 });
 
 dematerializeBtn.addEventListener("click", function () {
-  if (loggedIn) {
-    const location = "Unknown";
-    const time = getCurrentTime();
-    updateDashboard("HCET Syndicate TARDIS Console", location, time);
-    addLogEntry(location, time);
-  }
+  handleMaterializeDematerialize("Unknown");
 });
 
 timeRotorBtn.addEventListener("click", function () {
-  if (loggedIn) {
-const timeRotorBtn = document.getElementById("time-rotor") || document.createElement("button");
-
-timeRotorBtn.addEventListener("click", function () {
-  if (loggedIn) {
-    activateTimeRotor();
-  }
-});
-
-function activateTimeRotor() {
-  const timeRotor = document.getElementById("time-rotor");
-
-  const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-  timeRotor.style.backgroundColor = randomColor;
-
-  const animationDuration = Math.floor(Math.random() * 4) + 1;
-  const animationDelay = Math.floor(Math.random() * 2);
-
-  timeRotor.style.animationDuration = `${animationDuration}s`;
-  timeRotor.style.animationDelay = `${animationDelay}s`;
-
-  const animations = ["spin", "bounce", "scale"];
-  const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
-
-  timeRotor.classList.add(randomAnimation);
-
-  setTimeout(function () {
-    timeRotor.classList.remove(randomAnimation);
-    timeRotor.style.backgroundColor = "";
-    timeRotor.style.animationDuration = "";
-    timeRotor.style.animationDelay = "";
-  }, (animationDuration + animationDelay) * 1000);
-}
-
-  }
+  activateTimeRotor();
 });
 
 chameleonCircuitBtn.addEventListener("click", function () {
-  if (loggedIn) {
-    console.log("Engaging the Chameleon Circuit...");
-  }
+  toggleChameleonCircuit();
 });
 
 sendButton.addEventListener("click", function () {
-  if (loggedIn) {
-    const message = messageInput.value.trim();
-    if (message !== "") {
-      addMessage(message);
-      messageInput.value = "";
-    }
+  const message = messageInput.value.trim();
+  if (message !== "") {
+    addMessage(message);
+    messageInput.value = "";
   }
 });
 
 activateEmergencyBtn.addEventListener("click", function () {
-  if (loggedIn) {
-    activateEmergencyProtocols();
-  }
+  activateEmergencyProtocols();
 });
 
 submitJournalBtn.addEventListener("click", function () {
@@ -138,48 +86,41 @@ submitJournalBtn.addEventListener("click", function () {
 });
 
 increaseSuppliesBtn.addEventListener("click", function () {
-  suppliesCount++;
-  updateResourceCount("supplies", suppliesCount);
+  updateResourceCount("supplies", suppliesCount + 1);
 });
 
 decreaseSuppliesBtn.addEventListener("click", function () {
   if (suppliesCount > 0) {
-    suppliesCount--;
-    updateResourceCount("supplies", suppliesCount);
+    updateResourceCount("supplies", suppliesCount - 1);
   }
 });
 
 increaseEquipmentBtn.addEventListener("click", function () {
-  equipmentCount++;
-  updateResourceCount("equipment", equipmentCount);
+  updateResourceCount("equipment", equipmentCount + 1);
 });
 
 decreaseEquipmentBtn.addEventListener("click", function () {
   if (equipmentCount > 0) {
-    equipmentCount--;
-    updateResourceCount("equipment", equipmentCount);
+    updateResourceCount("equipment", equipmentCount - 1);
   }
 });
 
 increaseTimeEnergyBtn.addEventListener("click", function () {
-  timeEnergyCount++;
-  updateResourceCount("time-energy", timeEnergyCount);
+  updateResourceCount("time-energy", timeEnergyCount + 1);
 });
 
 decreaseTimeEnergyBtn.addEventListener("click", function () {
   if (timeEnergyCount > 0) {
-    timeEnergyCount--;
-    updateResourceCount("time-energy", timeEnergyCount);
+    updateResourceCount("time-energy", timeEnergyCount - 1);
   }
 });
 
 clearLogsBtn.addEventListener("click", function () {
-  logList.innerHTML = "";
-  travelLogs = [];
+  clearLogs();
 });
 
 clearMessagesBtn.addEventListener("click", function () {
-  messageList.innerHTML = "";
+  clearMessages();
 });
 
 travelButton.addEventListener("click", function () {
@@ -191,37 +132,19 @@ travelButton.addEventListener("click", function () {
 });
 
 // Functions
-function getCurrentTime() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  const seconds = String(date.getSeconds()).padStart(2, "0");
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-}
-
-
 function updateDashboard(consoleName, location, time) {
-  document.title = consoleName;
-  currentLocation.textContent = "Current Location: " + location;
-  currentTime.textContent = "Current Time: " + time;
+  currentLocation.textContent = `Location: ${location}`;
+  currentTime.textContent = `Time: ${time}`;
 }
 
-function addLogEntry(location, time) {
-  const entry = {
-    location: location,
-    time: time,
-    events: [],
-  };
-  travelLogs.push(entry);
-  displayLogEntry(entry);
+function addLogEntry(logEntry) {
+  travelLogs.push(logEntry);
+  displayLogEntry(logEntry);
 }
 
-function displayLogEntry(entry) {
+function displayLogEntry(logEntry) {
   const listItem = document.createElement("li");
-  listItem.textContent = `Location: ${entry.location}, Time: ${entry.time}`;
+  listItem.textContent = logEntry;
   logList.appendChild(listItem);
 }
 
@@ -231,60 +154,65 @@ function addMessage(message) {
   messageList.appendChild(listItem);
 }
 
-function activateEmergencyProtocols() {
-  console.log("Activating Emergency Protocols...");
-}
+  function activateEmergencyProtocols() {
+    console.log("Initiating Emergency Protocols...");
+  
+    // Play the Rickroll audio
+    const audio = new Audio('emergency-relax.mp3');
+    audio.play();
+  
+    // Display a surprise message
+    const listItem = document.createElement("li");
+    listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ";
+    messageList.appendChild(listItem);
+  
+    // Create a link to the Rickroll video
+    const rickrollLink = document.createElement("a");
+    rickrollLink.textContent = "Relaxing Song ඞඞඞ";
+    rickrollLink.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    rickrollLink.target = "_blank";
+    listItem.appendChild(rickrollLink);
+  }
 
 function addJournalEntry(entryText) {
-  const li = document.createElement("li");
-  li.textContent = entryText;
-  journalList.appendChild(li);
+  const listItem = document.createElement("li");
+  listItem.textContent = entryText;
+  journalList.appendChild(listItem);
 }
 
 function updateResourceCount(resourceType, count) {
-  switch (resourceType) {
-    case "supplies":
-      suppliesCountElement.textContent = count;
-      break;
-    case "equipment":
-      equipmentCountElement.textContent = count;
-      break;
-    case "time-energy":
-      timeEnergyCountElement.textContent = count;
-      break;
-    default:
-      break;
+  if (resourceType === "supplies") {
+    suppliesCount = count;
+    suppliesCountElement.textContent = count;
+  } else if (resourceType === "equipment") {
+    equipmentCount = count;
+    equipmentCountElement.textContent = count;
+  } else if (resourceType === "time-energy") {
+    timeEnergyCount = count;
+    timeEnergyCountElement.textContent = count;
   }
 }
 
-function travelToDestination(destination) {
-  console.log("Traveling to destination: " + destination);
-  const location = destination;
-  const time = getCurrentTime();
-  updateDashboard("HCET Syndicate TARDIS Console", location, time);
-  addLogEntry(location, time);
-}
-
-// Chameleon Circuit functionality
-let chameleonCircuitEngaged = false;
-
-chameleonCircuitBtn.addEventListener("click", function () {
+function handleMaterializeDematerialize(location) {
   if (loggedIn) {
-    console.log("Engaging the Chameleon Circuit...");
-
-    if (chameleonCircuitEngaged) {
-      resetCircuitStyling();
-      chameleonCircuitEngaged = false;
-    } else {
-      engageCircuitStyling();
-      chameleonCircuitEngaged = true;
-    }
+    const currentTime = getCurrentTime();
+    updateDashboard("HCET Syndicate TARDIS Console", location, currentTime);
+    const logEntry = `Materialized/Dematerialized at ${location} - ${currentTime}`;
+    addLogEntry(logEntry);
   }
-});
+}
+
+function toggleChameleonCircuit() {
+  chameleonCircuitEngaged = !chameleonCircuitEngaged;
+
+  if (chameleonCircuitEngaged) {
+    engageCircuitStyling();
+  } else {
+    resetCircuitStyling();
+  }
+}
 
 function engageCircuitStyling() {
-  console.log("Chameleon Circuit engaged! The TARDIS is changing its appearance.");
-
   const previousBodyStyling = {
     backgroundColor: document.body.style.backgroundColor,
     color: document.body.style.color,
@@ -334,8 +262,6 @@ function engageCircuitStyling() {
 }
 
 function resetCircuitStyling() {
-  console.log("Disengaging the Chameleon Circuit...");
-
   const previousBodyStyling = JSON.parse(chameleonCircuitBtn.dataset.previousBodyStyling);
   document.body.style.backgroundColor = previousBodyStyling.backgroundColor;
   document.body.style.color = previousBodyStyling.color;
@@ -370,45 +296,51 @@ function resetCircuitStyling() {
   chameleonCircuitBtn.style.transition = "";
 }
 
-var timeRotorButton = document.getElementById('time-rotor');
+function activateTimeRotor() {
+  timeRotorBtn.style.backgroundColor = generateRandomColor();
+  timeRotorBtn.classList.add("pulsate");
+  timeRotorBtn.disabled = true;
 
-timeRotorButton.addEventListener('click', function() {
-  var randomColor = generateRandomColor();
-  document.getElementById('time-rotor').style.backgroundColor = randomColor;
-  document.getElementById('time-rotor').classList.add('pulsate-animation');
-  timeRotorButton.disabled = true;
-
-  setTimeout(function() {
-    document.getElementById('time-rotor').classList.remove('pulsate-animation');
-    timeRotorButton.disabled = false;
+  setTimeout(function () {
+    timeRotorBtn.style.backgroundColor = "";
+    timeRotorBtn.classList.remove("pulsate");
+    timeRotorBtn.disabled = false;
   }, 3000);
-});
+}
 
 function generateRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
 
-function activateEmergencyProtocols() {
-  console.log("Initiating Emergency Protocols...");
+function clearLogs() {
+  logList.innerHTML = "";
+  travelLogs = [];
+}
 
-  // Play the Rickroll audio
-  const audio = new Audio('emergency-relax.mp3');
-  audio.play();
+function clearMessages() {
+  messageList.innerHTML = "";
+}
 
-  // Display a surprise message
-  const listItem = document.createElement("li");
-  listItem.textContent = "Just chill! The worst case you will die. Don't forget to leave a Travel Journal. Just chillax and Enjoy this surprise: ";
-  messageList.appendChild(listItem);
+function travelToDestination(destination) {
+  console.log("Traveling to destination: " + destination);
+  const location = destination;
+  const time = getCurrentTime();
+  updateDashboard("HCET Syndicate TARDIS Console", location, time);
+  addLogEntry(location, time);
+}
 
-  // Create a link to the Rickroll video
-  const rickrollLink = document.createElement("a");
-  rickrollLink.textContent = "Relaxing Song ඞඞඞ";
-  rickrollLink.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-  rickrollLink.target = "_blank";
-  listItem.appendChild(rickrollLink);
+function getCurrentTime() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }

@@ -44,6 +44,38 @@ body {
   margin: 20px;
 }
 
+#destination-select {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--box-shadow-color);
+}
+
+#destination-select option {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  font-size: 16px;
+}
+
+#destination-select:hover {
+  background-color: var(--hover-color);
+  color: var(--background-color);
+}
+
+#destination-select:focus {
+  outline: none;
+  border: 2px solid var(--border-color);
+}
+
+#destination-select::placeholder {
+  color: var(--primary-color);
+}
+
 
 button {
   margin: 15px;
@@ -123,39 +155,3 @@ h3 {
   text-align: center;
   color: var(--primary-color);
 }
-
-/* .dashboard-box:nth-child(1) {
-  background-color: hsl(180, 100%, 55%);
-  }
-  
-  .dashboard-box:nth-child(2) {
-  background-color: hsl(207, 100%, 70%);
-  }
-  
-  .dashboard-box:nth-child(3) {
-  background-color: hsl(160, 100%, 70%);
-  }
-  
-  .dashboard-box:nth-child(4) {
-  background-color: hsl(45, 100%, 70%);
-  }
-  
-  .dashboard-box:nth-child(5) {
-  background-color: hsl(240, 100%, 75%);
-}
-  
-  .dashboard-box:nth-child(6) {
-  background-color: hsl(0, 100%, 85%); 
-  }
-  
-  .dashboard-box:nth-child(7) {
-  background-color: hsl(200, 100%, 85%); 
-  }
-  
-  .dashboard-box:nth-child(8) {
-  background-color: hsl(30, 100%, 85%); 
-  }
-  
-  .dashboard-box:nth-child(9) {
-  background-color: hsl(210, 100%, 70%); \
-  } 
