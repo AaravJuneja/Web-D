@@ -32,6 +32,13 @@ body {
   margin-bottom: 20px;
   }
 
+#dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .dashboard-box {
   flex-direction: column;
   align-items: center;
