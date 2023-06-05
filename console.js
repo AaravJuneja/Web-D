@@ -64,35 +64,41 @@ activateEmergencyBtn.addEventListener("click", function () {
 });
 
 submitJournalBtn.addEventListener("click", function () {
-  const journalEntry = journalEntryInput.value.trim();
-  if (journalEntry !== "") {
-    addJournalEntry(journalEntry);
+  const entryText = journalEntryInput.value.trim();
+  if (entryText !== "") {
+    addJournalEntry(entryText);
     journalEntryInput.value = "";
   }
 });
 
 increaseSuppliesBtn.addEventListener("click", function () {
-  increaseSupplies();
+  updateResourceCount("supplies", suppliesCount + 1);
 });
 
 decreaseSuppliesBtn.addEventListener("click", function () {
-  decreaseSupplies();
+  if (suppliesCount > 0) {
+    updateResourceCount("supplies", suppliesCount - 1);
+  }
 });
 
 increaseEquipmentBtn.addEventListener("click", function () {
-  increaseEquipment();
+  updateResourceCount("equipment", equipmentCount + 1);
 });
 
 decreaseEquipmentBtn.addEventListener("click", function () {
-  decreaseEquipment();
+  if (equipmentCount > 0) {
+    updateResourceCount("equipment", equipmentCount - 1);
+  }
 });
 
 increaseTimeEnergyBtn.addEventListener("click", function () {
-  increaseTimeEnergy();
+  updateResourceCount("time-energy", timeEnergyCount + 1);
 });
 
 decreaseTimeEnergyBtn.addEventListener("click", function () {
-  decreaseTimeEnergy();
+  if (timeEnergyCount > 0) {
+    updateResourceCount("time-energy", timeEnergyCount - 1);
+  }
 });
 
 clearLogsBtn.addEventListener("click", function () {
@@ -104,12 +110,12 @@ clearMessagesBtn.addEventListener("click", function () {
 });
 
 travelButton.addEventListener("click", function () {
-  const destination = document.getElementById("destination").value;
-  if (destination.trim() !== "") {
-    travelTo(destination.trim());
+  if (loggedIn) {
+    const destinationSelect = document.getElementById("destination-select");
+    const selectedDestination = destinationSelect.value;
+    travelToDestination(selectedDestination);
   }
 });
-
 
 // Functions
 function updateDashboard(consoleName, location, time) {
