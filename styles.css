@@ -1,12 +1,13 @@
-/* Variables */
 :root {
   --primary-color: #333333;
   --secondary-color: #FFFFFF;
   --background-color: #F5F5F5;
   --border-color: var(--primary-color);
-  --box-shadow-color: rgba(0, 0, 0, 0.1);
   --hover-color: #666666;
   --emergency-color: #FF0000;
+  --glass-opacity: 0.8;
+  --blur-strength: 10px;
+  --box-shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Global Styles */
@@ -24,6 +25,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: var(--secondary-color);
+  background-image: url("sample-bg-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(var(--blur-strength));
+  box-shadow: 0 8px 32px var(--box-shadow-color);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .form-container {
@@ -33,8 +41,10 @@ body {
   width: 300px;
   padding: 20px;
   border-radius: 8px;
-  background-color: var(--secondary-color);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, var(--glass-opacity));
+  backdrop-filter: blur(var(--blur-strength));
+  box-shadow: 0 8px 16px var(--box-shadow-color);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .form-container h2 {
@@ -148,7 +158,7 @@ button:focus {
   box-shadow: 0 0 30px var(--box-shadow-color);
   padding: 20px;
   margin: 20px;
-  width: 300px;
+  width: 400px;
   height: auto;
   max-width: 100%;
   box-sizing: border-box;

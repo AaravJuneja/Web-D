@@ -207,15 +207,15 @@ function updateDashboard(consoleName, location, time) {
       padding: document.body.style.padding,
       transition: document.body.style.transition,
     };
-  
+
     document.body.style.backgroundColor = "navy";
-    document.body.style.color = "white";
+    document.body.style.color = "black";
     document.body.style.fontFamily = "Helvetica, Arial, sans-serif";
     document.body.style.padding = "20px";
     document.body.style.transition = "background-color 0.5s ease-in-out";
   
     const consoleSection = document.getElementById("console-section");
-    consoleSection.style.border = "2px solid white";
+    consoleSection.style.border = "2px solid black";
     consoleSection.style.borderRadius = "10px";
     consoleSection.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     consoleSection.style.padding = "20px";
@@ -234,8 +234,8 @@ function updateDashboard(consoleName, location, time) {
     journalList.style.padding = "0";
   
     chameleonCircuitBtn.style.backgroundColor = "transparent";
-    chameleonCircuitBtn.style.color = "white";
-    chameleonCircuitBtn.style.border = "2px solid white";
+    chameleonCircuitBtn.style.color = "black";
+    chameleonCircuitBtn.style.border = "2px solid black";
     chameleonCircuitBtn.style.borderRadius = "5px";
     chameleonCircuitBtn.style.padding = "10px";
     chameleonCircuitBtn.style.transition = "background-color 0.5s ease-in-out";
