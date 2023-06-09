@@ -1,13 +1,14 @@
 :root {
-  --primary-color: #333333;
+  /* Color variables */
+  --primary-color: #003399;
   --secondary-color: #FFFFFF;
-  --background-color: #F5F5F5;
+  --background-color: #000000;
   --border-color: var(--primary-color);
-  --hover-color: #666666;
-  --emergency-color: #FF0000;
-  --glass-opacity: 0.8;
-  --blur-strength: 10px;
-  --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --hover-color: #1100ff;
+  --emergency-color: #ff0000;
+  --glass-opacity: 0.9;
+  --blur-strength: 5px;
+  --box-shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Global Styles */
@@ -16,7 +17,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--background-color);
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .container {
@@ -50,6 +51,7 @@ body {
 .form-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: var(--primary-color);
 }
 
 .form-container input[type="text"],
@@ -61,6 +63,7 @@ body {
   border-radius: 4px;
   border: 1px solid var(--primary-color);
   background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .form-container button,
@@ -90,25 +93,67 @@ button[type="submit"]:hover,
 }
 
 .form-container .form-footer,
-h1,
 h2,
 h3,
 #journal-entries ul {
   text-align: center;
+  color: var(--primary-color);
+}
+
+h1 {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 5px;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
 }
 
 .button-link {
   color: var(--primary-color);
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
 
 .button-link:hover {
   color: var(--hover-color);
+  text-decoration: underline;
 }
 
 /* Specific Styles */
-#login-section {
+#login-container,
+#signup-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(var(--blur-strength));
+}
+
+#login-container h2,
+#signup-container h2 {
+  color: var(--primary-color);
+}
+
+#login-container .form-footer a {
+  color: var(--primary-color);
+}
+
+#signup-container .form-footer a:hover {
+  color: var(--hover-color);
+}
+
+#console-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,16 +165,6 @@ h3,
   box-shadow: 0 0 20px var(--box-shadow-color);
   padding: 20px;
   margin-bottom: 20px;
-}
-
-#username,
-#password,
-#signup-username,
-#signup-password,
-#destination-select,
-#destination-select option {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
 }
 
 #dashboard {
@@ -146,17 +181,18 @@ h3,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--primary-color);
   border-radius: 10px;
   box-shadow: 0 0 30px var(--box-shadow-color);
   padding: 20px;
   margin: 20px;
   width: 400px;
-  height: auto;
+  height: 350px;
   max-width: 100%;
   box-sizing: border-box;
   overflow-wrap: break-word;
+  color: var(--primary-color);
 }
 
 #destination-select:focus {
@@ -171,4 +207,65 @@ h3,
 #activate-emergency {
   background-color: var(--emergency-color);
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 8px 8px 16px #d6d6d6, -8px -8px 16px #ffffff;
+  outline: none;
+  margin: 10px;
+}
+
+.btn:hover {
+  box-shadow: 10px 10px 20px #d6d6d6, -10px -10px 20px #ffffff;
+}
+
+.btn:active {
+  background-color: #e6e6e6;
+  box-shadow: inset 4px 4px 8px #d6d6d6, inset -4px -4px 8px #ffffff;
+}
+
+.btn:focus {
+  box-shadow: 8px 8px 16px #d6d6d6, -8px -8px 16px #ffffff, 0px 0px 8px #4285f4;
+}
+
+/* Cute styles */
+.form-container {
+  position: relative;
+}
+
+.form-container button,
+button[type="submit"],
+.button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+}
+
+.form-container button:hover,
+button[type="submit"]:hover,
+.button:hover {
+  background-color: var(--hover-color);
+}
+
+.button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
