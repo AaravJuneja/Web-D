@@ -41,6 +41,7 @@ body {
   align-items: center;
   width: 300px;
   padding: 20px;
+  padding-right: 43px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, var(--glass-opacity));
   backdrop-filter: blur(var(--blur-strength));
@@ -68,7 +69,6 @@ body {
 
 .form-container button,
 button[type="submit"],
-#scrollButton,
 #activate-emergency {
   width: 100%;
   padding: 10px 20px;
@@ -78,7 +78,7 @@ button[type="submit"],
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 0 10px var(--box-shadow-color);
-}
+} 
 
 .form-container button,
 button[type="submit"] {
