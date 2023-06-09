@@ -15,3 +15,4 @@ Within the console section, there are several elements and features:
 7) Resource Management: Allows the user to manage supplies, equipment, and time energy reserves.
 
 I apologise if you find the "Emergency Protocol" misleading but it will be fun!
+I apologise for the incomplete front-end of console.html..
